@@ -7,6 +7,8 @@ import matplotlib.dates as mdates
 import seaborn as sns
 import glob
 import pickle
+import nc_time_axis
+
 # local modules:
 import fourdenvar
 import experiment_setup as es
@@ -92,9 +94,9 @@ def plot_twin_spread(times, var, xb_dir, xa_dir, xt_var=None, obs=None, ob_pos=N
 
     if xt_var is not None:
         ax.plot(times, xt_var, ':', label='model truth', color='k', linewidth=0.9)
-    if obs is not None:
-        ax.errorbar(times[ob_pos], obs, yerr=err, fmt='o', alpha=0.7, color=palette[9], label='observations',
-                    markeredgecolor='k', markeredgewidth=1.0, ms=8)
+    # if obs is not None:
+    #     ax.errorbar(times[ob_pos], obs, yerr=err, fmt='o', alpha=0.7, color=palette[9], label='observations',
+    #                 markeredgecolor='k', markeredgewidth=1.0, ms=8)
     ax.legend(loc=2)
     ax.set_xlabel('Date')
     ax.set_ylabel(ylab)

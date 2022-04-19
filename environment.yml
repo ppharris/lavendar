@@ -1,0 +1,10 @@
+name: lavendar
+channels:
+  - conda-forge
+dependencies:
+  - netcdf4
+  - python=2
+  - scipy
+  - seaborn
+  - f90nml
+  - nc-time-axis
