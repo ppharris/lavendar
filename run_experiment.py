@@ -27,19 +27,15 @@ def poolcontext(*args, **kwargs):
     pool.terminate()
 
 
-def ens_member_run(ens_number_xi, seed_val=0, params=None, xa=False):
+def ens_member_run(ens_number_xi, seed_val=0, params=None, ens_dir_out=None):
     """
     Function to run a prior or posterior ensemble member
     :param ens_number_xi: tuple of ensemble member number (int) and corresponding parameter vector (arr)
     :param seed_val: seed value used for any perturbations within experiment (int)
     :param params: parameters to update in ensemble member run (lst)
-    :param xa: specify if this is a prior or posterior ensemble member (bool)
+    :param ens_dir_out: output directory for this ensemble (str)
     :return: string confirming ensemble member has run (str)
     """
-    if xa is True:
-        ens_dir = '/ensemble_xa_'
-    else:
-        ens_dir = '/ensemble'
     ens_number = ens_number_xi[0]
     xi = ens_number_xi[1]
     out_dir = 'output_seed' +str(seed_val) + '_ens_' + str(ens_number) + '/'
@@ -49,10 +45,9 @@ def ens_member_run(ens_number_xi, seed_val=0, params=None, xa=False):
         sh.copy(file, out_dir)
     try:
         rj = rjda.RunJulesDa(params=params, values=xi, nml_dir=out_dir)
-        if not os.path.exists(es.output_directory + ens_dir + str(seed_val)):
-            os.makedirs(es.output_directory + ens_dir + str(seed_val))
-        rj.run_jules_dic(output_name='ens'+str(ens_number), out_dir=es.output_directory+ens_dir+str(seed_val))
-        dumps = glob.glob(es.output_directory+ens_dir + str(seed_val) + '/ens'+str(ens_number)+'.dump*')
+        rj.run_jules_dic(output_name='ens'+str(ens_number), out_dir=ens_dir_out)
+        dump_file_pattern = os.path.join(ens_dir_out, "ens%d.dump*" % ens_number)
+        dumps = glob.glob(dump_file_pattern)
         for f in dumps:
             os.remove(f)
         sh.rmtree(out_dir)
@@ -72,9 +67,19 @@ def ens_run(x_ens, seed_val=0, xa=False, params=None):
     :return: string confirming if the ensemble has been run (str)
     """
     print 'Running ensemble'
+
+    if xa is True:
+        ens_dir = 'ensemble_xa_'
+    else:
+        ens_dir = 'ensemble'
+
+    ens_dir_out = os.path.join(es.output_directory, "%s%d" % (ens_dir, seed_val))
+    if not os.path.exists(ens_dir_out):
+        os.makedirs(ens_dir_out)
+
     mp.freeze_support()
     with poolcontext(processes=es.num_processes) as pool:
-        res = pool.map(partial(ens_member_run, seed_val=seed_val, params=params, xa=xa), enumerate(x_ens))
+        res = pool.map(partial(ens_member_run, seed_val=seed_val, params=params, ens_dir_out=ens_dir_out), enumerate(x_ens))
     pool.close()
     pool.join()
     return 'Ensemble has been run'
