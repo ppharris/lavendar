@@ -1,4 +1,6 @@
 &jules_initial
-    dump_file = .true.
-    file = '../data/mod_truth.dump.20080101.nc'
+dump_file=.true.,
+file='../data/mod_truth.dump.20080101.nc',
+nvars=0,
+total_snow=.false.,
 /
