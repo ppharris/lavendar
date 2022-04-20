@@ -1,6 +1,8 @@
 &jules_surface
+all_tiles=0,
 beta1=0.83,
 beta2=0.93,
+cor_mo_iter=1,
 fwe_c3=0.5,
 fwe_c4=20000.0,
 hleaf=57000.0,
@@ -11,6 +13,9 @@ l_anthrop_heat_src=.false.,
 l_elev_land_ice=.false.,
 l_elev_lw_down=.false.,
 l_epot_corr=.false.,
+l_flake_model=.false.,
 l_land_ice_imp=.false.,
 l_point_data=.true.,
+l_surface_type_ids=.false.,
+l_urban2t=.false.,
 /

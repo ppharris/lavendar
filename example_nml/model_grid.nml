@@ -4,8 +4,11 @@ nx=1,
 ny=1,
 /
 &jules_latlon
-latitude=41.1651,
-longitude=-96.4766,
+const_val=41.1651,-96.4766,
+nvars=2,
+read_from_dump=.false.,
+use_file=.false.,.false.,
+var='latitude','longitude',
 /
 &jules_land_frac
 /
@@ -13,6 +16,9 @@ longitude=-96.4766,
 force_1d_grid=.false.,
 land_only=.false.,
 use_subgrid=.false.,
+/
+&jules_nlsizes
+bl_levels=1,
 /
 &jules_surf_hgt
 zero_height=.true.,

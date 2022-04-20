@@ -79,7 +79,7 @@ observations are included in :code:`observations.py`. The rest of the setup can 
 
 .. note::
 
-    To run this tutorial you must have JULES vn4.9 installed on your system. The path to the executable for your
+    To run this tutorial you must have JULES vn6.0 installed on your system. The path to the executable for your
     version of JULES must be included in the :code:`model_exe` variable in :code:`experiment_setup.py`.
 
 Running data assimilation

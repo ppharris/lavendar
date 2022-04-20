@@ -1,5 +1,6 @@
 &jules_output
 dump_period=100,
+dump_period_unit='Y',
 nprofiles=1,
 output_dir='../output_obs/model_truth',
 run_id='mod_truth',
