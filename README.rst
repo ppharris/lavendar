@@ -22,17 +22,27 @@ Data for running the JULES model can be found in the :code:`data/` directory, in
 FLUXNET site, a JULES dump file and a JULES land fraction file. There are 2 JULES namelist file directories
 :code:`example_nml` and :code:`williams_nml`. The :code:`example_nml` directory is used for JULES runs in the example
 experiment included in the tutorial. The :code:`williams_nml` directory was used to produce a "model truth" JULES run
-from which pseudo observations are sampled in the tutorial example. Output from the different JULES model runs are
+from which pseudo observations are sampled in the tutorial example. Example outputs from the different JULES model runs are
 stored in the various subdirectories under the :code:`output/` directory.
 
 experiment_setup.py
 ^^^^^^^^^^^^^^^^^^^
 
-This module controls how the experiment will be run. Output and namelist directories are set by :code:`output_directory`
-and :code:`nml_directory`. The model executable path is set by :code:`model_exe`. The functions to exatract the mean
+This module controls how the experiment will be run. Output and input namelist directories are set by :code:`output_directory`
+and :code:`nml_directory`, respectively. The model executable path is set by :code:`model_exe`. The functions to extract the mean
 prior model estimate to the assimilated observations, the ensemble of prior estimates to the observations and the
 assimilated observations are set by :code:`jules_hxb`, :code:`jules_hxb_ens` and :code:`obs_fn` respectively. These
 functions are defined in the :code:`observations.py` module and are experiment and model specific.
+
+Output files are written into the directory structure,::
+
+    [output_directory]/[seed_val]/background/xb.*
+    [output_directory]/[seed_val]/ensemble_xb/ensNN.*
+    [output_directory]/[seed_val]/ensemble_xb/ensNN.*
+    [output_directory]/[seed_val]/xa_ensMM.pkl
+    [output_directory]/[seed_val]/plot/
+
+where :code:`NN` are the individual ensemble member indices and :code:`MM` is the total number of ensemble members.
 
 The parameters to be optimised in the experiment are set in the dictionary :code:`opt_params`, in the tutorial
 experiment the dictionary is defined as:
@@ -64,8 +74,8 @@ its bounds.
 We specify the error set on the prior parameters with :code:`prior_err`, the ensemble size with
 :code:`ensemble_size`, the number of processors to use for the experiment with :code:`num_processes` and the seed value
 for any random perturbations performed in the experiment with :code:`seed_value`. We also set a function to save
-plotting output from the data assimilation experiments with :code:`save_plots` and a save directory with
-:code:`plot_output_dir`.
+plotting output from the data assimilation experiments with :code:`save_plots` into the :code:`plot/` sub-directory of
+the output directory structure described above.
 
 Tutorial
 --------

@@ -1,6 +1,7 @@
 # 3rd party modules:
 import numpy as np
 import netCDF4 as nc
+import os
 import random
 # local modules:
 import experiment_setup as es
@@ -79,22 +80,23 @@ def extract_jules_hx(nc_file):
     return {'obs': (gpp_hx, lai_hx, canht_hx)}
 
 
-def extract_jules_hxb():
+def extract_jules_hxb(out_dir=None):
     """
     Function to extract modelled observations for prior JULES run
     :return: dictionary containing observations (dict)
     """
-    return extract_jules_hx(es.output_directory+'/background/xb0.daily.nc')
+    return extract_jules_hx(os.path.join(out_dir, 'xb.daily.nc'))
 
 
-def extract_jules_hxb_ens():
+def extract_jules_hxb_ens(out_dir=None):
     """
     Function to extract ensemble of modelled observations from prior model ensemble
     :return: ensemble of modelled observations (lst)
     """
     hm_xbs = []
     for xb_fname in xrange(0, es.ensemble_size):
-        hxbi_dic = extract_jules_hx(es.output_directory + '/ensemble0/ens' + str(xb_fname) + '.daily.nc')
+        file_in = os.path.join(out_dir, "ens%d.daily.nc" % xb_fname)
+        hxbi_dic = extract_jules_hx(file_in)
         hxbi = np.concatenate(hxbi_dic['obs'])
         hm_xbs.append(hxbi)
     return hm_xbs

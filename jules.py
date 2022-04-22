@@ -55,18 +55,17 @@ class Jules():
         # user doesn't have to remember to...
 
         # run JULES
-        dir_path = os.path.dirname(os.path.realpath(__file__))
         cwd = os.getcwd()
-        os.chdir(dir_path+'/'+self.nml_dir)
+        os.chdir(self.nml_dir)
         self.write_nml()
-        cmd = []
-        cmd.append(self.jules)
+        os.chdir(cwd)
+
+        cmd = [self.jules, self.nml_dir]
 
         p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         out = p.stdout.readlines()
         err = p.stderr.readlines()
         p.wait()
-        os.chdir(cwd)
 
         # catch "fatal" errors
         for line in out:

@@ -10,8 +10,10 @@ import plot
 
 # set directory for JULES output
 output_directory = os.getcwd()+'/output'
-# set directory containing JULES NML files
+# set directory containing input JULES NML files
 nml_directory = os.getcwd()+'/example_nml'
+# set directory for temporary JULES nml files
+work_directory = "/scratch/ppha/lavendar_test/work"
 # set model executable
 model_exe = '/home/users/ewanp82/models/jules4.9/build/bin/jules.exe'
 # set function to extract JULES modelled observations for prior JULES
@@ -42,6 +44,3 @@ num_processes = 100
 seed_value = 0
 # plotting save function
 save_plots = plot.save_plots
-# plotting output director
-plot_output_dir = os.getcwd()+'/output/plot'
-

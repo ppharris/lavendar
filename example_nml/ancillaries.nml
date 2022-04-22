@@ -1,5 +1,5 @@
 &jules_frac
-file='../data/tile_fractions_maize.dat',
+file='./data/tile_fractions_maize.dat',
 read_from_dump=.false.,
 /
 &jules_soil_props

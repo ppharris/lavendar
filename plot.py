@@ -8,6 +8,7 @@ import seaborn as sns
 import glob
 import pickle
 import nc_time_axis
+import os
 
 # local modules:
 import fourdenvar
@@ -164,19 +165,21 @@ def plot_mult_dist(xa_ens, xb_ens, p_keys, x_true=None):
     return fig, ax
 
 
-def save_plots(xa_ens_pickle, out_dir):
+def save_plots(xa_ens_pickle, xa_dir, xb_dir, out_dir):
     """
     Function saving plots from data assimilatoin experiment output
     :param xa_ens_pickle: location of pickled posterior ensemble arr (str)
     :param out_dir: directory to save plots in (str)
     :return: string confirming plots have been saved (str)
     """
+
+    if not os.path.exists(out_dir):
+        os.makedirs(out_dir)
+
     dat_xt = nc.Dataset('output/model_truth/mod_truth.daily.nc', 'r')
     jda = fourdenvar.FourDEnVar()
     obs = es.obs_fn()
     date = nc.num2date(dat_xt.variables['time'][:], dat_xt.variables['time'].units)
-    xb_dir = es.output_directory + '/ensemble' + str(es.seed_value)
-    xa_dir = es.output_directory + '/ensemble_xa_' + str(es.seed_value)
     #plot GPP
     fig, ax = plot_twin_spread(date[:], 'gpp', xb_dir, xa_dir,
                              xt_var=1000 * 60 * 60 * 24 * dat_xt.variables['gpp'][:,7,0,0],
