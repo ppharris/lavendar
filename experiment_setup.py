@@ -40,7 +40,5 @@ prior_err = 0.25
 ensemble_size = 50
 # set number of processors to use in parallel runs of JULES ensemble
 num_processes = 100
-# set seed value for any random number generation within experiments
-seed_value = 0
 # plotting save function
 save_plots = plot.save_plots

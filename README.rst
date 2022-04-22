@@ -73,9 +73,9 @@ its bounds.
 
 We specify the error set on the prior parameters with :code:`prior_err`, the ensemble size with
 :code:`ensemble_size`, the number of processors to use for the experiment with :code:`num_processes` and the seed value
-for any random perturbations performed in the experiment with :code:`seed_value`. We also set a function to save
-plotting output from the data assimilation experiments with :code:`save_plots` into the :code:`plot/` sub-directory of
-the output directory structure described above.
+for any random perturbations performed in the experiment as a command like argument to :code:`run_experiment.py`.
+We also set a function to save plotting output from the data assimilation experiments with :code:`save_plots` into the
+:code:`plot/` sub-directory of the output directory structure described above.
 
 Tutorial
 --------

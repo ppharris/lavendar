@@ -108,7 +108,7 @@ if __name__ == "__main__":
     es.jules_hxb_ens = partial(observations.extract_jules_hxb_ens, out_dir=out_dir_xb)
 
     # instantiate JULES data assimilation class
-    jda = fourdenvar.FourDEnVar(seed_val=int(sys.argv[1]))
+    jda = fourdenvar.FourDEnVar(seed_val=seed_val)
     params = jda.p_keys
 
     # if 'run_xb' is in system arguments then run JULES with prior parameters
@@ -135,7 +135,7 @@ if __name__ == "__main__":
     ens_run(jda.xbs, seed_val=jda.seed_val, params=params, ens_dir_out=out_dir_xb)
     # if 'run_xa' is in system arguments then run posterior ensemble
     if 'run_xa' in sys.argv:
-        jda = fourdenvar.FourDEnVar(assim=True, seed_val=int(sys.argv[1]))
+        jda = fourdenvar.FourDEnVar(assim=True, seed_val=seed_val)
         params = jda.p_keys
         # find posterior estimate and posterior ensemble
         xa = jda.find_min_ens_inc()

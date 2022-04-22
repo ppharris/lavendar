@@ -13,7 +13,7 @@ class FourDEnVar:
     :param run_xb: switch to run JULES for the prior values specified in experiment_setup module (bool)
     :param seed_val: seed value to use in any random drawing within class (int)
     """
-    def __init__(self, assim=False, seed_val=es.seed_value):
+    def __init__(self, assim=False, seed_val=0):
         # set parameters to optimize and prior values
         self.p_dict = es.opt_params
         self.p_keys = []
