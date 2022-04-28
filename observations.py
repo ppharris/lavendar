@@ -1,9 +1,7 @@
-# 3rd party modules:
 import numpy as np
 import netCDF4 as nc
 import os
-import random
-# local modules:
+
 import experiment_setup as es
 
 

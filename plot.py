@@ -1,16 +1,12 @@
-# 3rd party python modules:
 import numpy as np
-import datetime as dt
 import netCDF4 as nc
 import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
 import seaborn as sns
 import glob
 import pickle
 import nc_time_axis
 import os
 
-# local modules:
 import fourdenvar
 import experiment_setup as es
 

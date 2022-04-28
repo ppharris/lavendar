@@ -1,8 +1,7 @@
-# 3rd party modules:
 import numpy as np
 import scipy.optimize as spop
 import scipy.linalg as splinal
-# local modules:
+
 import experiment_setup as es
 
 

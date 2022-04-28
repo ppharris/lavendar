@@ -1,14 +1,12 @@
-# core python modules:
 import os
 import sys
 from functools import partial
 from contextlib import contextmanager
-# 3rd party modules:
 import multiprocessing as mp
 import shutil as sh
 import glob
 import pickle
-# local modules:
+
 import fourdenvar
 import experiment_setup as es
 import observations

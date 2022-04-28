@@ -1,9 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import netCDF4 as nc
 import fourdenvar as fdj
 import seaborn as sns
-import run_jules as rj
 
 
 def test_cost_ens_inc(jj, alph=1e-8, vect=0):

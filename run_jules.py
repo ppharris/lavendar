@@ -1,6 +1,5 @@
-# 3rd party modules:
 import numpy as np
-# local modules:
+
 import jules
 import experiment_setup as es
 

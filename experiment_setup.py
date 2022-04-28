@@ -1,9 +1,6 @@
 #######################################
 # File to specify setup of experiment #
 #######################################
-# core py modules:
-import os
-# local modules:
 import observations
 import plot
 

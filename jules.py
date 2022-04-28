@@ -1,11 +1,9 @@
-# core python modules:
 import subprocess
 import os
-# 3rd party modules:
 import sys
 import f90nml
 import glob
-# local modules:
+
 import experiment_setup as es
 
 
